@@ -19,16 +19,16 @@
  *	Seattle, WA 98195-2840
  * 	yangli@cs.washington.edu
  *
- * The academic publication for the $1 recognizer, and what should be 
+ * The academic publication for the $1 recognizer, and what should be
  * used to cite it, is:
  *
- *	Wobbrock, J.O., Wilson, A.D. and Li, Y. (2007). Gestures without 
- *	  libraries, toolkits or training: A $1 recognizer for user interface 
- *	  prototypes. Proceedings of the ACM Symposium on User Interface 
- *	  Software and Technology (UIST '07). Newport, Rhode Island (October 
+ *	Wobbrock, J.O., Wilson, A.D. and Li, Y. (2007). Gestures without
+ *	  libraries, toolkits or training: A $1 recognizer for user interface
+ *	  prototypes. Proceedings of the ACM Symposium on User Interface
+ *	  Software and Technology (UIST '07). Newport, Rhode Island (October
  *	  7-10, 2007). New York: ACM Press, pp. 159-168.
  *
- * The Protractor enhancement was separately published by Yang Li and programmed 
+ * The Protractor enhancement was separately published by Yang Li and programmed
  * here by Jacob O. Wobbrock:
  *
  *	Li, Y. (2010). Protractor: A fast and accurate gesture
@@ -187,6 +187,7 @@ function DollarRecognizer() // constructor
 //
 // Private helper functions from this point down
 //
+// 重新采样。重新采样成n个点。
 function Resample(points, n)
 {
 	var I = PathLength(points) / (n - 1); // interval length
@@ -210,6 +211,8 @@ function Resample(points, n)
 		newpoints[newpoints.length] = new Point(points[points.length - 1].X, points[points.length - 1].Y);
 	return newpoints;
 }
+
+//计算朝向：中心到起点的方向。
 function IndicativeAngle(points)
 {
 	var c = Centroid(points);
@@ -228,6 +231,8 @@ function RotateBy(points, radians) // rotates points around centroid
 	}
 	return newpoints;
 }
+
+//缩放。xy不一致。
 function ScaleTo(points, size) // non-uniform scale; assumes 2D gestures (i.e., no lines)
 {
 	var B = BoundingBox(points);
@@ -239,6 +244,8 @@ function ScaleTo(points, size) // non-uniform scale; assumes 2D gestures (i.e., 
 	}
 	return newpoints;
 }
+
+//把points平移pt
 function TranslateTo(points, pt) // translates points' centroid
 {
 	var c = Centroid(points);
