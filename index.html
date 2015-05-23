@@ -14,13 +14,23 @@ ctx.fillStyle="black";
 ctx.strokeStyle="black";
 
 ctx.strokeRect(231,180,337,168);
-ctx.strokeRect(344,196,18,40);ctx.strokeRect(382,196,18,40);
-ctx.strokeRect(402,196,18,40);
 
 ctx.strokeStyle="green";
-ctx.strokeRect(0,0,800,480);
-ctx.strokeRect(0,0,250,125);
 ctx.strokeRect(344,185,18,40);
+
+c.addEventListener("mousemove", onMouseMove, false);  
+function onMouseMove(evt){                              
+	var mouseX=evt.layerX;
+	var mouseY=evt.layerY;
+	
+	
+	ctx.fillStyle="red";
+	ctx.beginPath();
+	ctx.moveTo(mouseX-5,mouseY);
+	ctx.lineTo(mouseX,mouseY);
+	ctx.closePath();
+	ctx.stroke();
+}
 
 </script>
 
